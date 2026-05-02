@@ -1,1 +1,124 @@
-显示页
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天玑网络 - 官方公众号</title>
+    <style>
+        /* 基础重置与深蓝渐变背景 */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #1a2a42 0%, #080d17 100%);
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        /* 玻璃拟态质感的暗金边框卡片 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(212, 175, 55, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        /* 标题样式：暗金色调，带文字阴影增加层次 */
+        .title {
+            color: #D4AF37;
+            font-size: 26px;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+
+        /* 副标题说明 */
+        .subtitle {
+            color: #8c9bb0;
+            font-size: 15px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* 二维码图片容器：增加悬浮动效与阴影 */
+        .qr-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #ffffff; /* 确保与图片白底完美融合 */
+            font-size: 0; /* 消除图片下方的默认空隙 */
+        }
+
+        .qr-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .qr-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 底部提示文字 */
+        .footer-tips {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #6a7b8c;
+            line-height: 1.6;
+        }
+
+        .highlight-green {
+            color: #07c160; /* 微信绿 */
+            font-weight: bold;
+        }
+
+        .highlight-gold {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 30px 20px;
+            }
+            .title {
+                font-size: 22px;
+            }
+            .subtitle {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1 class="title">欢迎关注天玑网络</h1>
+        <p class="subtitle">提交游戏反馈获，取最新游戏资讯</p>
+        
+        <div class="qr-wrapper">
+            <img src="gzh.png" alt="天玑网络微信公众号">
+        </div>
+
+        <div class="footer-tips">
+            <p>长按保存图片扫码，或在微信搜索 <span class="highlight-green">天玑网络</span><br>
+            开启您的 <span class="highlight-gold">传奇世界</span> 精彩之旅</p>
+        </div>
+    </div>
+
+</body>
+</html>
