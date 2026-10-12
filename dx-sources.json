@@ -1,0 +1,17 @@
+[
+  {
+    "name": "暴风",
+    "url": "https://bfzyapi.com/api.php/provide/vod",
+    "isAdult": false
+  },
+  {
+    "name": "IK",
+    "url": "https://ikunzyapi.com/api.php/provide/vod/from/ikm3u8",
+    "isAdult": false
+  },
+  {
+    "name": "海外看(墙外)",
+    "url": "https://haiwaikan.com/api.php/provide/vod",
+    "isAdult": false
+  }
+]
