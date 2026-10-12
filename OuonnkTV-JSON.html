@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>订阅源地址</title>
+<style>
+  :root {
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --border: #e3e6ea;
+    --text: #1f2328;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-soft: #eff4ff;
+    --ok: #16a34a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+  .wrap { width: 100%; max-width: 680px; }
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 20px;
+  }
+  .list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .item:last-child { border-bottom: none; }
+  .meta { flex: 1; min-width: 0; }
+  .label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .url {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  button.copy {
+    flex: none;
+    border: 1px solid var(--border);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+    font-family: inherit;
+  }
+  button.copy:hover { background: #dfe9ff; }
+  button.copy.done {
+    color: var(--ok);
+    background: #eafaf0;
+    border-color: #bfe8ce;
+  }
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 32px;
+    transform: translate(-50%, 12px);
+    background: #1f2328;
+    color: #fff;
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (max-width: 520px) {
+    .item { flex-direction: column; align-items: stretch; }
+    button.copy { align-self: flex-end; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>订阅源地址</h1>
+  <p class="desc">点击右侧按钮复制地址，粘贴到视频源订阅中即可。</p>
+  <div class="list" id="list"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+  const sources = [
+    { label: '源列表 1', url: 'https://downloads.itwu.dpdns.org/sources.json' },
+    { label: '源列表 2', url: 'https://downloads.itwu.dpdns.org/m-sources.json' },
+    { label: '源列表 3', url: 'https://downloads.itwu.dpdns.org/dx-sources.json' },
+  ];
+
+  const list = document.getElementById('list');
+  const toast = document.getElementById('toast');
+  let toastTimer;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+  }
+
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+
+  sources.forEach((item) => {
+    const row = document.createElement('div');
+    row.className = 'item';
+
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+
+    const label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = item.label;
+
+    const url = document.createElement('div');
+    url.className = 'url';
+    url.textContent = item.url;
+
+    meta.appendChild(label);
+    meta.appendChild(url);
+
+    const btn = document.createElement('button');
+    btn.className = 'copy';
+    btn.type = 'button';
+    btn.textContent = '复制';
+    btn.addEventListener('click', async () => {
+      try {
+        await copyText(item.url);
+        btn.textContent = '已复制';
+        btn.classList.add('done');
+        showToast('已复制：' + item.url);
+        setTimeout(() => {
+          btn.textContent = '复制';
+          btn.classList.remove('done');
+        }, 1600);
+      } catch (err) {
+        showToast('复制失败，请手动选择地址复制');
+      }
+    });
+
+    row.appendChild(meta);
+    row.appendChild(btn);
+    list.appendChild(row);
+  });
+</script>
+</body>
+</html>
