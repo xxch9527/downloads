@@ -1,0 +1,62 @@
+[
+  {
+    "name": "👒┃小胡┃资源┃",
+    "url": "http://c.小胡.icu/api.php/provide/vod",
+    "isAdult": false
+  },
+  {
+    "name": "🐉┃索尼┃高清",
+    "url": "https://suoniapi.com/api.php/provide/vod/",
+    "isAdult": false
+  },
+  {
+    "name": "🥗┃非凡┃资源",
+    "url": "http://ffzy1.tv/api.php/provide/vod",
+    "isAdult": false
+  },
+  {
+    "name": "🥑┃量子┃资源",
+    "url": "https://lzizy1.com/api.php/provide/vod",
+    "isAdult": false
+  },
+  {
+    "name": "🦁┃四九┃资源",
+    "url": "https://49zy1.com/api.php/provide/vod/",
+    "isAdult": false
+  },
+  {
+    "name": "🛰️飞速┃采集",
+    "url": "https://www.feisuzyapi.com/api.php/provide/vod/",
+    "isAdult": false
+  },
+  {
+    "name": "🐯┃奇虎┃采集",
+    "url": "https://caiji.qhzyapi.com/api.php/provide/vod",
+    "isAdult": false
+  },
+  {
+    "name": "⛱┃可可┃采集",
+    "url": "https://kekezy1.com/api.php/provide/vod/",
+    "isAdult": false
+  },
+  {
+    "name": "🐯虎牙采集",
+    "url": "https://www.huyaapi.com/api.php/provide/vod/from/hym3u8",
+    "isAdult": false
+  },
+  {
+    "name": "🦊火狐采集",
+    "url": "https://hhzyapi.com/api.php/provide/vod",
+    "isAdult": false
+  },
+  {
+    "name": "🌪️暴风影音",
+    "url": "https://app.bfzyapi.com/api.php/provide/vod",
+    "isAdult": false
+  },
+  {
+    "name": "🎏百度┃采集",
+    "url": "https://api.apibdzy.com/api.php/provide/vod/",
+    "isAdult": false
+  }
+]
